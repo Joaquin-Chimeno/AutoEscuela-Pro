@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AutoEscuela Pro - Panel de gestión integral para alumnos. Revisa tu progreso, accede a material didáctico y reserva clases prácticas en tiempo real.">
+    <title>AutoEscuela Pro | Mi Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="brand">
+                <h2>AutoEscuela <span>Pro</span></h2>
+            </div>
+            <nav class="menu">
+                <button class="menu-item active" data-target="dashboard"><i class="fas fa-home"></i> Mi Panel</button>
+                <button class="menu-item" data-target="calendar"><i class="fas fa-calendar-alt"></i> Reservar Práctica</button>
+                <button class="menu-item"><i class="fas fa-ticket-alt"></i> Comprar Bonos</button>
+                <button class="menu-item"><i class="fas fa-video"></i> Material de Estudio</button>
+            </nav>
+            <div class="user-profile">
+                <div class="avatar">A</div>
+                <div class="user-info">
+                    <p class="name">Rico</p>
+                    <p class="role">Alumno</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <section id="dashboard" class="view active">
+                <header class="section-header">
+                    <h1>¡Hola, Rico!</h1>
+                    <p>Bienvenido a tu panel de estudiante. Aquí tienes tu resumen actual.</p>
+                </header>
+
+                <div class="stats-grid">
+                    <article class="stat-card">
+                        <h3>Progreso Teórico</h3>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width: 78%;"></div>
+                        </div>
+                        <p class="stat-meta">78% Completado</p>
+                    </article>
+
+                    <article class="stat-card">
+                        <h3>Clases Completadas</h3>
+                        <h2 class="stat-number">12 <span class="total">/ 20</span></h2>
+                        <p class="stat-meta">Prácticas realizadas</p>
+                    </article>
+
+                    <article class="stat-card bento-bono">
+                        <h3>Saldo de Bonos</h3>
+                        <h2 class="stat-number">3 <span class="total">Disponibles</span></h2>
+                        <button class="btn btn-outline btn-sm">Comprar más Bonos</button>
+                    </article>
+                </div>
+
+                <section class="material-section">
+                    <h2>Material de Estudio Reciente</h2>
+                    <div class="material-grid">
+                        <article class="material-card">
+                            <div class="material-icon-wrapper video-type">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <div class="material-info">
+                                <h3>Señales de Tráfico</h3>
+                                <p>Video explicativo • 15 min</p>
+                            </div>
+                            <button class="btn btn-text">Ver ahora <i class="fas fa-chevron-right"></i></button>
+                        </article>
+
+                        <article class="material-card">
+                            <div class="material-icon-wrapper pdf-type">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="material-info">
+                                <h3>Aparcamiento en Batería</h3>
+                                <p>Guía de maniobras • 8 min</p>
+                            </div>
+                            <button class="btn btn-text">Abrir PDF <i class="fas fa-chevron-right"></i></button>
+                        </article>
+                    </div>
+                </section>
+
+                <div class="main-action-wrapper">
+                    <button id="btn-cta-reserva" class="btn btn-primary btn-lg">
+                        <i class="fas fa-calendar-plus"></i> Reservar Próxima Clase
+                    </button>
+                </div>
+            </section>
+
+            <section id="calendar" class="view hidden">
+                <header class="section-header">
+                    <h1>Reserva de Clases Prácticas</h1>
+                    <p>Selecciona una fecha y hora disponible. (Gestión en 3 clics)</p>
+                </header>
+
+                <div class="filters-bar">
+                    <div class="filter">
+                        <label><i class="fas fa-chalkboard-teacher"></i> Profesor</label>
+                        <select>
+                            <option>Todos los profesores</option>
+                            <option>María García</option>
+                            <option>Carlos Martínez</option>
+                        </select>
+                    </div>
+                    <div class="filter">
+                        <label><i class="fas fa-map-marker-alt"></i> Zona de Examen</label>
+                        <select>
+                            <option>Todas las zonas</option>
+                            <option>Zona C-Sur</option>
+                            <option>Zona Norte</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="date-selector">
+                    <button class="date-btn"><span class="day-name">LUN</span><span class="day-number">20</span></button>
+                    <button class="date-btn active"><span class="day-name">MAR</span><span class="day-number">21</span></button>
+                    <button class="date-btn"><span class="day-name">MIE</span><span class="day-number">22</span></button>
+                    <button class="date-btn"><span class="day-name">JUE</span><span class="day-number">23</span></button>
+                    <button class="date-btn"><span class="day-name">VIE</span><span class="day-number">24</span></button>
+                </div>
+
+                <div class="time-slots-grid">
+                    <article class="slot-card available" onclick="openBookingModal('09:00', 'María García', 'Zona C-Sur')">
+                        <div class="slot-header">
+                            <span class="time"><i class="far fa-clock"></i> 09:00</span>
+                            <span class="status-badge green">Disponible</span>
+                        </div>
+                        <div class="slot-body">
+                            <p class="prof"><i class="fas fa-user"></i> María García</p>
+                            <p class="zone"><i class="fas fa-map-pin"></i> Zona C-Sur</p>
+                        </div>
+                    </article>
+
+                    <article class="slot-card occupied">
+                        <div class="slot-header">
+                            <span class="time"><i class="far fa-clock"></i> 10:30</span>
+                            <span class="status-badge gray">Reservado</span>
+                        </div>
+                        <div class="slot-body">
+                            <p class="prof"><i class="fas fa-user"></i> Carlos Martínez</p>
+                            <p class="zone"><i class="fas fa-map-pin"></i> Zona Norte</p>
+                        </div>
+                    </article>
+
+                    <article class="slot-card available" onclick="openBookingModal('12:00', 'María García', 'Zona C-Sur')">
+                        <div class="slot-header">
+                            <span class="time"><i class="far fa-clock"></i> 12:00</span>
+                            <span class="status-badge green">Disponible</span>
+                        </div>
+                        <div class="slot-body">
+                            <p class="prof"><i class="fas fa-user"></i> María García</p>
+                            <p class="zone"><i class="fas fa-map-pin"></i> Zona C-Sur</p>
+                        </div>
+                    </article>
+
+                    <article class="slot-card occupied">
+                        <div class="slot-header">
+                            <span class="time"><i class="far fa-clock"></i> 16:00</span>
+                            <span class="status-badge gray">Reservado</span>
+                        </div>
+                        <div class="slot-body">
+                            <p class="prof"><i class="fas fa-user"></i> Carlos Martínez</p>
+                            <p class="zone"><i class="fas fa-map-pin"></i> Zona Norte</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            <h2>Confirmar Reserva</h2>
+            <div class="booking-details">
+                <div class="detail-row">
+                    <span>Fecha y Hora:</span>
+                    <strong id="modal-time">Martes 21, 09:00</strong>
+                </div>
+                <div class="detail-row">
+                    <span>Profesor:</span>
+                    <strong id="modal-prof">María García</strong>
+                </div>
+                <div class="detail-row">
+                    <span>Zona:</span>
+                    <strong id="modal-zone">Zona C-Sur</strong>
+                </div>
+                <div class="detail-row highlight-row">
+                    <span>Bonos Restantes:</span>
+                    <strong>3</strong>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-outline" onclick="closeModal()">Cancelar</button>
+                <button class="btn btn-primary" onclick="confirmBooking()">Confirmar Práctica</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
